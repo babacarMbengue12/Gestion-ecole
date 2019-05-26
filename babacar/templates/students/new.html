@@ -1,0 +1,86 @@
+{% extends "layout.html"%}
+
+
+{% block body %}
+
+
+
+<form action="" method="POST" class="card row">
+	{{form.hidden_tag()}}
+	<legend class="text-center card-header">{{legend}}</legend>
+	<div class="mr-5 ml-5">
+		<fieldset class="form-group">
+	    <div class="form-group">
+	    	{{form.firstname.label(class="form-control-label")}}
+	    	{% if form.firstname.errors%}
+	           {{form.firstname(class="form-control form-control-lg is-invalid")}}
+	           {% for error in form.firstname.errors %}
+	           	   <div class="invalid-feedback">{{error}}</div>
+	           {% endfor %}
+	    	{% else %}
+	              {{form.firstname(class="form-control form-control-lg")}}
+	    	{% endif %}
+	    </div>
+	    <div class="form-group">
+	    	{{form.lastname.label(class="form-control-label")}}
+	    	{% if form.lastname.errors%}
+	           {{form.lastname(class="form-control form-control-lg is-invalid")}}
+	           {% for error in form.lastname.errors %}
+	           	   <div class="invalid-feedback">{{error}}</div>
+	           {% endfor %}
+	    	{% else %}
+	              {{form.lastname(class="form-control form-control-lg")}}
+	    	{% endif %}
+	    </div>
+	    <div class="form-group">
+	    	{{form.address.label(class="form-control-label")}}
+	    	{% if form.address.errors%}
+	           {{form.address(class="form-control form-control-lg is-invalid")}}
+	           	   {% for error in form.address.errors %}
+	           	   <div class="invalid-feedback">{{error}}</div>
+	           	   {% endfor %}
+	    	{% else %}
+	              {{form.address(class="form-control form-control-lg")}}
+	    	{% endif %}
+	    </div>
+	    <div class="form-group">
+	    	{{form.number_phone.label(class="form-control-label")}}
+	    	{% if form.number_phone.errors%}
+	           {{form.number_phone(class="form-control form-control-lg is-invalid")}}
+	           {% for error in form.number_phone.errors %}
+	           	   <div class="invalid-feedback">{{error}}</div>
+	           {% endfor %}
+	    	{% else %}
+	              {{form.number_phone(class="form-control form-control-lg")}}
+	    	{% endif %}
+	    </div>
+	    <div class="form-group">
+	    	{{form.cls.label(class="form-control-label")}}
+	    	{% if form.cls.errors%}
+	           {{form.cls(class="form-control form-control-lg is-invalid")}}
+	           {% for error in form.cls.errors %}
+	           	   <div class="invalid-feedback">{{error}}</div>
+	           {% endfor %}
+	    	{% else %}
+	              {{form.cls(class="form-control form-control-lg")}}
+	    	{% endif %}
+	    </div>
+	    <div class="form-group">
+	    	{{form.birthday.label(class="form-control-label")}}
+	    	{% if form.birthday.errors%}
+	           {{form.birthday(type='date',class="form-control form-control-lg is-invalid")}}
+	           {% for error in form.birthday.errors %}
+	           	   <div class="invalid-feedback">{{error}}</div>
+	           {% endfor %}
+	    	{% else %}
+	              {{form.birthday(type='date',class="form-control form-control-lg")}}
+	    	{% endif %}
+	    </div>
+        <div class="form-group">
+        	{{form.btn(class="btn btn-primary")}}
+        </div>
+</fieldset>
+	</div>
+</form>
+
+{% endblock body %}

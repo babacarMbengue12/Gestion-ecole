@@ -1,0 +1,31 @@
+{% extends "layout.html"%}
+
+
+{% block body %}
+
+
+
+<form action="" method="POST" class="card row">
+	{{form.hidden_tag()}}
+	<legend class="text-center card-header">{{legend}}</legend>
+	<div class="mr-5 ml-5">
+		<fieldset class="form-group">
+	    <div class="form-group">
+	    	{{form.name.label(class="form-control-label")}}
+	    	{% if form.name.errors%}
+	           {{form.name(class="form-control form-control-lg is-invalid")}}
+	           {% for error in form.name.errors %}
+	           	   <div class="invalid-feedback">{{error}}</div>
+	           {% endfor %}
+	    	{% else %}
+	              {{form.name(class="form-control form-control-lg")}}
+	    	{% endif %}
+		</div>
+        <div class="form-group">
+        	{{form.btn(class="btn btn-primary")}}
+        </div>
+</fieldset>
+	</div>
+</form>
+
+{% endblock body %}

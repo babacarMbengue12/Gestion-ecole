@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<h1 class="text-center m-4">Dashboard</h1>
+<div class="row flex">
+    <div class="col-md-4">
+       <div class="card" style="width:18rem;">
+         <div class="card-header">
+           Lycée d'excellence de Dakar
+         </div>
+         <ul class="list-group list-group-flush">
+             <li class="list-group-item">
+                 Classrooms
+                <span class="badge badge-primary">{{count_class}}</span>
+             </li>
+             <li class="list-group-item">
+                Students
+                <span class="badge badge-primary">{{count_student}}</span>
+             </li>
+         </ul>
+       </div>
+    </div>
+    <div class="col-md-8">
+            <div class="card-header text-center">Clasrooms</div> 
+    <div class="row">
+        
+        {% for row in classrooms | batch(2) %} 
+            <div class="col-md-4">
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        {% for classroom in row %}
+                            <li class="list-group-item">
+                                    {{ classroom.name }}
+                                    <span class="badge badge-primary">
+                                        {{classroom.students.__len__()}}
+                                    </span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+            
+{% endblock body %}

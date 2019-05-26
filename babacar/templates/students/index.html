@@ -1,0 +1,46 @@
+{% extends "layout.html"%}
+
+
+{% block body %}
+
+<h1 class="text-center">Manage Students</h1>
+	<div class="text-right mb-3">
+		<a href="{{url_for('student_new')}}" class="btn btn-primary">New Student</a>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Firstname</th>
+				<th>Lastname</th>
+				<th>Address</th>
+				<th>Number Phone</th>
+				<th>Classroom</th>
+				<th>Date</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for student in students %}
+				<tr>
+					<td>{{student.id}}</td>
+					<td>{{student.firstname}}</td>
+					<td>{{student.lastname}}</td>
+					<td>{{student.address}}</td>
+					<td>{{student.number_phone}}</td>
+					<td>
+						<a href="{{url_for('student_index',name=student.cls.name)}}" class="card-link">{{student.cls.name}}</a>
+					</td>
+					<td>{{student.birthday.strftime('%d/%m/%Y')}}</td>
+					<td>
+						<a href="{{ url_for('student_edit',id=student.id)}}" class="btn btn-primary">Editer</a>
+						<form class="d-inline" action="{{ url_for('student_delete',id=student.id) }}" method="POST">
+							<input type="hidden" name="_method" value="DELETE">
+							<button class="btn btn-danger" type="submit">Delete</button>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock body %}

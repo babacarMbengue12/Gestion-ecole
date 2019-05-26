@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Edacy Final Project!{% endblock %}</title>
+        
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome/css/font-awesome.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/dataTables.bootstrap4.min.css')}}">
+        {% block stylesheets %}{% endblock %}
+
+    </head>
+    <body style="font: 17px /1.7 sans-serif">
+        <nav class="navbar navbar-toggleable-md navbar-dark bg-dark navbar-expand-md">
+            <div class="container" >
+                <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="{{url_for('student_index')}}" class="nav-link">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url_for('classroom_index')}}" class="nav-link">Classroom</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <main class="row" style="padding: 5rem 0 5rem 0">
+            <div class="container">
+                    {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                      {% for category,message in messages %}
+                         <div class="alert alert-{{ category }}">{{message}}</div>
+                      {% endfor %}
+                    {% endif %}
+                 {% endwith %}
+                 {% block body %}{% endblock %}
+            </div>
+        </main>
+       <div class="container">
+            <div class="bg-dark mt-2 fixed-bottom">
+                <p class="text-center text-white mb-0">&copy; copyright <span class="year"></span> Lycée D'excelence de Dakar </p>
+            </div>
+       </div>
+       
+        <script src="{{ url_for('static',filename='js/jquery.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+        
+        {% block javascripts %}{% endblock %}
+       <script>
+            $(function () {
+                var table = $('.table').DataTable(
+                    {
+
+                        // "oLanguage": {
+                        //     "sSearch": "Rechercher",
+                        //     "oPaginate": {
+                        //         "sPrevious": "Precedent",
+                        //         "sNext": "Suivant",
+                        //         "sLast": "Derniere Page",
+                        //         "sFirst": "1er Page",
+                        //     }
+                        // },
+                        /*"language": {
+                            "lengthMenu": "Affichage _MENU_ Resultat par page",
+                            "zeroRecords": "Resultat non Trouver !!!",
+                            "info": "Page N° _PAGE_ Sur _PAGES_",
+                            "infoEmpty": "Tableau Vide",
+                            "infoFiltered": "(Filtrer A parir de _MAX_ resultats)"
+                        },*/
+
+
+                    }
+                );
+                $('a.toggle-vis').on( 'click', function (e) {
+                    e.preventDefault();
+
+                    // Get the column API object
+                    var column = table.column( $(this).attr('data-column') );
+
+                    // Toggle the visibility
+                    column.visible( ! column.visible() );
+                } );
+            })
+        </script>
+    </body>
+</html>

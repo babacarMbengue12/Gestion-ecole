@@ -1,0 +1,43 @@
+{% extends "layout.html"%}
+
+
+{% block body %}
+
+<h1>Manage CLassrooms</h1>
+<div class="text-right mb-3">
+	<a href="{{url_for('classroom_new')}}" class="btn btn-primary">New CLassroom</a>
+</div>
+<table class="table table-striped text-center">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Number of student</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for classroom in classrooms %}
+		 <tr>
+		 	<td>{{classroom.id}}</td>
+			 <td>{{classroom.name}}</td>
+		 	<td>
+				 <a href="{{ url_for('student_index',name=classroom.name) }}">
+						<span class="badge badge-primary" style="font-size: 1.5rem;">
+								{{classroom.students.__len__()}}
+						</span>
+				 </a>
+			 </td>			 
+		 	<td>
+				 <a href="{{ url_for('classroom_edit',id=classroom.id)}}" class="btn btn-primary">Edit</a>
+				 <form class="d-inline"action="{{ url_for('classroom_delete',id=classroom.id) }}" method="POST">
+					 <input type="hidden" name="_method" value="DELETE">
+					 <button class="btn btn-danger" type="submit">Delete</button>
+				 </form>
+		 	</td>
+		 </tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock body %}
