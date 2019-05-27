@@ -14,3 +14,6 @@ Installer les dependances
 $ pip install -r requirements.txt
 ```
 ## Tester l'application
+```sh
+$ python run.py
+```
