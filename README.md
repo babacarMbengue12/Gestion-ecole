@@ -1,9 +1,9 @@
 # Gestion école
-##Author
+## Author
 Babacar Mbengue
-##Email
+## Email
 babacar.mbengue10@gmail.com
-##spécialisation
+## spécialisation
 développement web
 ## Version
 python >= 3.5
