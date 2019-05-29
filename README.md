@@ -1,4 +1,10 @@
 # Gestion école
+##Author
+Babacar Mbengue
+##Email
+babacar.mbengue10@gmail.com
+##spécialisation
+développement web
 ## Version
 python >= 3.5
 FlasK = 1.0.3
